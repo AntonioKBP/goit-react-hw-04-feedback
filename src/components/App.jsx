@@ -11,8 +11,8 @@ export const App = () => {
   const [bad, setBad] = useState(0);
 
   const onFeedbackClick = e => {
-    console.log(e.target.name);
-    switch (e.target.textContent) {
+    const { name } = e.target;
+    switch (name) {
       case 'good':
         setGood(good + 1);
         break;
@@ -29,6 +29,8 @@ export const App = () => {
   };
 
   const countTotalFeedback = () => {
+    // const totalFeedback = good + neutral + bad;
+    // console.log(totalFeedback);
     const total = [good, neutral, bad].reduce((acc, number) => {
       return (acc += number);
     }, 0);
@@ -36,14 +38,14 @@ export const App = () => {
   };
 
   const countPositiveFeedbackPercentage = () => {
-    return Math.round((good / countTotalFeedback()) * 100);
+    return Math.round((good / countTotalFeedback()) * 100).toFixed();
   };
 
   return (
     <>
       <Section title="Please leave feedback">
         <FeedbackOptions
-          options={['good', 'bad', 'neutral']}
+          options={{ good, neutral, bad }}
           onFeedbackClick={onFeedbackClick}
         />
       </Section>

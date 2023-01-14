@@ -3,11 +3,14 @@ import PropTypes from 'prop-types';
 import { ButtonList, ButtonItem, Button } from './FeedbackOptions.styled';
 
 export const FeedbackOptions = ({ options, onFeedbackClick }) => {
+  const optionsKeys = Object.keys(options);
+  console.log();
+
   return (
     <ButtonList>
-      {options.map(option => (
+      {optionsKeys.map(option => (
         <ButtonItem key={option}>
-          <Button type="button" onClick={onFeedbackClick}>
+          <Button name={option} type="button" onClick={onFeedbackClick}>
             {option}
           </Button>
         </ButtonItem>
@@ -17,6 +20,6 @@ export const FeedbackOptions = ({ options, onFeedbackClick }) => {
 };
 
 FeedbackOptions.propTypes = {
-  options: PropTypes.arrayOf(PropTypes.string),
+  // options: PropTypes.arrayOf(PropTypes.string),
   onFeedbackClick: PropTypes.func.isRequired,
 };
